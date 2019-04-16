@@ -16,7 +16,6 @@ class KotlinContext {
         things.add(it.invoke(ObjectFactory(), thing) as JAXBElement<*>)
 
     private fun getMethod(thing: Any): Method? {
-        println("Expecting: ${thing::class.java}")
         return ObjectFactory::class.java.declaredMethods
             .filter {
                 it.returnType == JAXBElement::class.java &&
