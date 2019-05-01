@@ -13,7 +13,7 @@ plugins {
     id "nebula.release" version "10.1.1"
     id "com.bmuschko.nexus" version "2.3.1"
     id 'org.unbroken-dome.xjc' version '1.4.2'
-    id "io.codearte.nexus-staging" version "0.11.0"
+    id "io.codearte.nexus-staging" version "0.20.0"
 }
 
 apply from: 'gradle/publishing.gradle'
