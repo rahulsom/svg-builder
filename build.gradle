@@ -2,7 +2,7 @@ import com.github.rahulsom.svgbuilder.Converter
 import com.github.rahulsom.svgbuilder.GroovyNewifyBuilder
 
 plugins {
-    id "com.gradle.build-scan" version "1.11"
+    id "com.gradle.build-scan" version "2.3"
     id "me.champeau.buildscan-recipes" version "0.2.3"
 
     id 'java'
@@ -85,8 +85,8 @@ compileTestGroovy.doFirst {
 }
 
 buildScan {
-    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
-    licenseAgree = 'yes'
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
 }
 
 buildScanRecipes {
