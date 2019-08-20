@@ -2,7 +2,7 @@ import com.github.rahulsom.svgbuilder.Converter
 import com.github.rahulsom.svgbuilder.GroovyNewifyBuilder
 
 plugins {
-    id "com.gradle.build-scan" version "2.4"
+    id "com.gradle.build-scan" version "2.4.1"
     id "me.champeau.buildscan-recipes" version "0.2.3"
 
     id 'java'
