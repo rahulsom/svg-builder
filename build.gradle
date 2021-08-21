@@ -81,13 +81,6 @@ compileTestGroovy.doFirst {
     }
 }
 
-gradleEnterprise {
-	buildScan {
-		termsOfServiceUrl = "https://gradle.com/terms-of-service"
-		termsOfServiceAgree = "yes"
-	}
-}
-
 javadoc {
     options.addStringOption('Xdoclint:none', '-quiet')
 }
