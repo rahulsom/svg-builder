@@ -35,8 +35,8 @@ dependencies {
     compileOnly 'org.codehaus.groovy:groovy-all:3.0.10'
 
     testCompile 'org.spockframework:spock-core:2.1-groovy-3.0'
-    testCompile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10"
-    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10"
+    testCompile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.20"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.20"
 }
 
 
