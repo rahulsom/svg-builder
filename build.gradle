@@ -4,7 +4,7 @@ import com.github.rahulsom.svgbuilder.GroovyNewifyBuilder
 plugins {
 	id 'java'
     id 'groovy'
-    id "org.jetbrains.kotlin.jvm" version "1.6.20"
+    id "org.jetbrains.kotlin.jvm" version "1.6.21"
 
     id "nebula.info" version "10.1.3"
     id "nebula.release" version "15.3.1"
