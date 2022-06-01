@@ -32,7 +32,7 @@ dependencies {
     xjcClasspath 'org.jvnet.jaxb2_commons:jaxb2-fluent-api:3.0'
     xjcClasspath 'org.jvnet.jaxb2_commons:jaxb2-basics-annotate:1.1.0'
 
-    compileOnly 'org.codehaus.groovy:groovy-all:3.0.10'
+    compileOnly 'org.codehaus.groovy:groovy-all:3.0.11'
 
     testCompile 'org.spockframework:spock-core:2.1-groovy-3.0'
     testCompile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21"
