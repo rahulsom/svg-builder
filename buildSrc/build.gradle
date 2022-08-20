@@ -5,5 +5,5 @@ repositories {
 }
 
 dependencies {
-    compile 'com.thaiopensource:trang:20091111'
+    implementation 'com.thaiopensource:trang:20091111'
 }
