@@ -77,3 +77,7 @@ compileTestGroovy.doFirst {
 javadoc {
   options.addStringOption('Xdoclint:none', '-quiet')
 }
+
+test {
+  useJUnitPlatform()
+}
