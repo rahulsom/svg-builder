@@ -42,7 +42,7 @@ dependencies {
 
   compileOnly 'org.codehaus.groovy:groovy-all:3.0.13'
 
-  testImplementation 'org.spockframework:spock-core:1.3-groovy-2.5'
+  testImplementation 'org.spockframework:spock-core:2.2-groovy-4.0'
   testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
   compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
