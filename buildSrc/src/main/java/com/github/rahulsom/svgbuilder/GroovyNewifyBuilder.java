@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class GroovyNewifyBuilder {
     public void createFile() {
-        String sourcesDir = "build/xjc/generated-sources/com/github/rahulsom/svg";
+        String sourcesDir = "build/generated/sources/xjc/java/main/com/github/rahulsom/svg";
         String classNames = Arrays.stream(new File(sourcesDir).listFiles())
                 .map(it -> it.getName().replace(".java", ""))
                 .filter(it -> !it.equals("package-info"))

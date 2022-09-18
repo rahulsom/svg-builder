@@ -6,7 +6,7 @@ plugins {
   id 'groovy'
   id "org.jetbrains.kotlin.jvm" version "1.3.72"
 
-  id 'org.unbroken-dome.xjc' version '1.4.3'
+  id 'org.unbroken-dome.xjc' version '2.0.0'
   id("com.github.rahulsom.waena.root").version("0.4.0")
   id("com.github.rahulsom.waena.published").version("0.4.0")
 }
@@ -23,8 +23,6 @@ contacts {
 group 'com.github.rahulsom'
 description = "A library for building SVG diagrams"
 
-sourceCompatibility = 1.8
-
 repositories {
   mavenCentral()
 }
@@ -32,7 +30,9 @@ repositories {
 sourceSets {
   main {
     groovy.srcDir "build/groovysupport/generated-sources"
-    kotlin.srcDir "build/xjc/generated-sources"
+    kotlin.srcDir "build/generated/sources/xjc/java/main"
+    xjcSchema.srcDir "build/schemas"
+    xjcBinding.srcDir "src/main/jaxb"
   }
 }
 
@@ -43,26 +43,11 @@ dependencies {
   compileOnly 'org.codehaus.groovy:groovy-all:3.0.13'
 
   testImplementation 'org.spockframework:spock-core:1.3-groovy-2.5'
-  testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72"
-  compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.71"
-}
-
-
-compileKotlin {
-  kotlinOptions {
-    jvmTarget = "1.8"
-  }
-}
-
-compileTestKotlin {
-  kotlinOptions {
-    jvmTarget = "1.8"
-  }
+  testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+  compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 xjcGenerate {
-  source = fileTree('build/schemas') { include '*.xsd' }
-  bindingFiles = fileTree('src/main/jaxb') { include '*.xjb' }
   extraArgs = ['-Xfluent-api', '-Xannotate']
 }
 
