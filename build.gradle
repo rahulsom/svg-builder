@@ -4,7 +4,7 @@ import com.github.rahulsom.svgbuilder.GroovyNewifyBuilder
 plugins {
   id 'java'
   id 'groovy'
-  id "org.jetbrains.kotlin.jvm" version "1.7.10"
+  id "org.jetbrains.kotlin.jvm" version "1.7.20"
 
   id 'org.unbroken-dome.xjc' version '2.0.0'
   id("com.github.rahulsom.waena.root").version("0.4.0")
