@@ -2,25 +2,24 @@ import com.github.rahulsom.svgbuilder.Converter
 import com.github.rahulsom.svgbuilder.GroovyNewifyBuilder
 
 plugins {
-  id 'java'
-  id 'groovy'
-  id "org.jetbrains.kotlin.jvm" version "1.8.0"
-
-  id 'org.unbroken-dome.xjc' version '2.0.0'
+  id("java")
+  id("groovy")
+  id("org.jetbrains.kotlin.jvm").version("1.8.0")
+  id("org.unbroken-dome.xjc").version("2.0.0")
   id("com.github.rahulsom.waena.root").version("0.6.1")
   id("com.github.rahulsom.waena.published").version("0.6.1")
 }
 
 contacts {
   validateEmails = true
-  'rahulsom@noreply.github.com' {
+  addPerson("rahulsom@noreply.github.com") {
     moniker("Rahul Somasunderam")
     roles("owner")
     github("https://github.com/rahulsom")
   }
 }
 
-group 'com.github.rahulsom'
+group = "com.github.rahulsom"
 description = "A library for building SVG diagrams"
 
 repositories {
@@ -29,69 +28,63 @@ repositories {
 
 sourceSets {
   main {
-    groovy.srcDir "build/groovysupport/generated-sources"
-    kotlin.srcDir "build/generated/sources/xjc/java/main"
-    xjcSchema.srcDir "build/schemas"
-    xjcBinding.srcDir "src/main/jaxb"
+    groovy.srcDir("build/groovysupport/generated-sources")
+    kotlin.srcDir("build/generated/sources/xjc/java/main")
+    xjcSchema.srcDir("build/schemas")
+    xjcBinding.srcDir("src/main/jaxb")
   }
 }
 
 dependencies {
-  xjcClasspath 'org.jvnet.jaxb2_commons:jaxb2-fluent-api:3.0'
-  xjcClasspath 'org.jvnet.jaxb2_commons:jaxb2-basics-annotate:1.1.0'
+  xjcClasspath("org.jvnet.jaxb2_commons:jaxb2-fluent-api:3.0")
+  xjcClasspath("org.jvnet.jaxb2_commons:jaxb2-basics-annotate:1.1.0")
 
-  compileOnly 'org.codehaus.groovy:groovy-all:3.0.14'
+  compileOnly("org.codehaus.groovy:groovy-all:3.0.14")
 
   implementation("javax.xml.bind:jaxb-api:2.3.1")
-  implementation('org.glassfish.jaxb:jaxb-runtime:2.3.7')
-  implementation('com.sun.xml.bind:jaxb-core:4.0.1')
+  implementation("org.glassfish.jaxb:jaxb-runtime:2.3.7")
+  implementation("com.sun.xml.bind:jaxb-core:4.0.1")
 
-  testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0'
-  testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-  compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+  testImplementation("org.spockframework:spock-core:2.3-groovy-4.0")
+  testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+  compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 }
 
 xjcGenerate {
-  extraArgs = ['-Xfluent-api', '-Xannotate']
+  extraArgs = ["-Xfluent-api", "-Xannotate"]
 }
 
-task download() {
+tasks.register("download") {
   doFirst {
     if (!file("build/schemas/svg.dtd").exists()) {
       file("$buildDir/schemas").mkdirs()
       file("build/schemas/svg.dtd").text =
-          new URL('https://www.w3.org/Graphics/SVG/1.1/DTD/svg11-flat-20030114.dtd').text
+          new URL("https://www.w3.org/Graphics/SVG/1.1/DTD/svg11-flat-20030114.dtd").text
     }
     new Converter().convert(buildDir)
   }
 }
-xjcGenerate.dependsOn 'download'
+xjcGenerate.dependsOn("download")
 xjcGenerate.doLast {
   new GroovyNewifyBuilder().createFile(buildDir)
 }
-compileJava.dependsOn 'xjcGenerate'
-compileKotlin.dependsOn 'xjcGenerate'
+compileJava.dependsOn("xjcGenerate")
+compileKotlin.dependsOn("xjcGenerate")
 compileTestGroovy.doFirst {
   copy {
-    from "build/classes/kotlin/test"
-    into "build/classes/java/test"
+    from("build/classes/kotlin/test")
+    into("build/classes/java/test")
   }
 }
 
 javadoc {
-  options.addStringOption('Xdoclint:none', '-quiet')
+  options.addStringOption("Xdoclint:none", "-quiet")
 }
 
 test {
   useJUnitPlatform()
 }
 
-//java {
-//  toolchain {
-//    languageVersion.set(JavaLanguageVersion.of(17))
-//  }
-//}
-//
 kotlin {
   jvmToolchain {
     languageVersion.set(JavaLanguageVersion.of(17))
