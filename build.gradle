@@ -39,7 +39,7 @@ dependencies {
   xjcClasspath("org.jvnet.jaxb2_commons:jaxb2-fluent-api:3.0")
   xjcClasspath("org.jvnet.jaxb2_commons:jaxb2-basics-annotate:1.1.0")
 
-  compileOnly("org.codehaus.groovy:groovy-all:3.0.14")
+  compileOnly("org.codehaus.groovy:groovy-all:3.0.15")
 
   implementation("javax.xml.bind:jaxb-api:2.3.1")
   implementation("org.glassfish.jaxb:jaxb-runtime:2.3.8")
