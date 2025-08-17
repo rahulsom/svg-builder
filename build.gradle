@@ -1,13 +1,14 @@
 import com.github.rahulsom.svgbuilder.Converter
 import com.github.rahulsom.svgbuilder.GroovyNewifyBuilder
+import com.github.rahulsom.waena.WaenaExtension
 
 plugins {
   id("java")
   id("groovy")
   id("org.jetbrains.kotlin.jvm").version("2.2.10")
   id("org.unbroken-dome.xjc").version("2.0.0")
-  id("com.github.rahulsom.waena.root").version("0.6.1")
-  id("com.github.rahulsom.waena.published").version("0.6.1")
+  id("com.github.rahulsom.waena.root").version("0.15.1")
+  id("com.github.rahulsom.waena.published").version("0.15.1")
 }
 
 contacts {
@@ -89,4 +90,8 @@ kotlin {
   jvmToolchain {
     languageVersion.set(JavaLanguageVersion.of(17))
   }
+}
+
+waena {
+  publishMode.set(WaenaExtension.PublishMode.Central)
 }
