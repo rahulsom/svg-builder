@@ -1,7 +1,7 @@
 package com.github.rahulsom.svg
 
 import java.lang.reflect.Method
-import javax.xml.bind.JAXBElement
+import jakarta.xml.bind.JAXBElement
 
 class KotlinContext {
     val things = mutableListOf<JAXBElement<*>>()
