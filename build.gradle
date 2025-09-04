@@ -1,13 +1,13 @@
 import com.github.rahulsom.svgbuilder.Converter
 import com.github.rahulsom.svgbuilder.GroovyNewifyBuilder
+import com.github.rahulsom.waena.WaenaExtension
 
 plugins {
   id("java")
   id("groovy")
   id("org.jetbrains.kotlin.jvm").version("2.2.10")
-  id("org.unbroken-dome.xjc").version("2.0.0")
-  id("com.github.rahulsom.waena.root").version("0.6.1")
-  id("com.github.rahulsom.waena.published").version("0.6.1")
+  id("com.github.rahulsom.waena.root").version("0.15.1")
+  id("com.github.rahulsom.waena.published").version("0.15.1")
 }
 
 contacts {
@@ -29,29 +29,32 @@ repositories {
 sourceSets {
   main {
     groovy.srcDir("build/groovysupport/generated-sources")
-    kotlin.srcDir("build/generated/sources/xjc/java/main")
-    xjcSchema.srcDir("build/schemas")
-    xjcBinding.srcDir("src/main/jaxb")
+    java.srcDir("build/generated/sources/xjc/java/main")
   }
 }
 
+configurations {
+  xjcTool
+}
+
 dependencies {
-  xjcClasspath("org.jvnet.jaxb2_commons:jaxb2-fluent-api:3.0")
-  xjcClasspath("org.jvnet.jaxb2_commons:jaxb2-basics-annotate:1.1.0")
+  xjcTool("org.glassfish.jaxb:jaxb-xjc:4.0.5")
+  xjcTool("org.glassfish.jaxb:jaxb-runtime:4.0.5")
+  xjcTool("jakarta.xml.bind:jakarta.xml.bind-api:4.0.2")
+  xjcTool("javax.xml.bind:jaxb-api:2.3.1")
+  xjcTool("org.jvnet.jaxb2_commons:jaxb2-fluent-api:3.0")
+  xjcTool("org.jvnet.jaxb2_commons:jaxb2-basics-annotate:1.1.0")
 
   compileOnly("org.codehaus.groovy:groovy-all:3.0.25")
 
-  implementation("javax.xml.bind:jaxb-api:2.3.1")
-  implementation("org.glassfish.jaxb:jaxb-runtime:2.3.9")
+  implementation("jakarta.xml.bind:jakarta.xml.bind-api:4.0.2")
+  implementation("org.glassfish.jaxb:jaxb-runtime:4.0.5")
   implementation("com.sun.xml.bind:jaxb-core:4.0.5")
 
   testImplementation("org.spockframework:spock-core:2.3-groovy-4.0")
+  testRuntimeOnly("org.junit.platform:junit-platform-launcher")
   testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-}
-
-xjcGenerate {
-  extraArgs = ["-Xfluent-api", "-Xannotate"]
 }
 
 tasks.register("download") {
@@ -64,12 +67,50 @@ tasks.register("download") {
     new Converter().convert(buildDir)
   }
 }
-xjcGenerate.dependsOn("download")
-xjcGenerate.doLast {
-  new GroovyNewifyBuilder().createFile(buildDir)
+
+tasks.register("xjcGenerate", JavaExec) {
+  description = "Generate Java classes from XML schema"
+  group = "build"
+
+  dependsOn("download")
+
+  classpath = configurations.xjcTool
+  mainClass = "com.sun.tools.xjc.Driver"
+
+  def outputDir = file("build/generated/sources/xjc/java/main")
+  def schemaDir = file("build/schemas")
+  def bindingDir = file("src/main/jaxb")
+
+  inputs.dir(schemaDir).withPropertyName("schemaDir")
+  inputs.dir(bindingDir).withPropertyName("bindingDir").optional()
+  outputs.dir(outputDir)
+
+  args = [
+      "-d", outputDir.absolutePath,
+      "-quiet",
+      "-extension",
+      "-Xfluent-api",
+      "-Xannotate"
+  ]
+
+  if (bindingDir.exists()) {
+    args += ["-b", bindingDir.absolutePath]
+  }
+
+  args += schemaDir.absolutePath
+
+  doFirst {
+    outputDir.mkdirs()
+  }
+
+  doLast {
+    new GroovyNewifyBuilder().createFile(buildDir)
+  }
 }
+
 compileJava.dependsOn("xjcGenerate")
 compileKotlin.dependsOn("xjcGenerate")
+tasks.named("sourcesJar").configure { dependsOn("xjcGenerate") }
 compileTestGroovy.doFirst {
   copy {
     from("build/classes/kotlin/test")
@@ -89,4 +130,8 @@ kotlin {
   jvmToolchain {
     languageVersion.set(JavaLanguageVersion.of(17))
   }
+}
+
+waena {
+  publishMode.set(WaenaExtension.PublishMode.Central)
 }

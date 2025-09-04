@@ -3,7 +3,7 @@ package com.github.rahulsom.svg
 import groovy.transform.CompileStatic
 import groovy.transform.Memoized
 
-import javax.xml.bind.JAXBElement
+import jakarta.xml.bind.JAXBElement
 
 @CompileStatic
 class GroovyContext {

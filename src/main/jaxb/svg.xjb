@@ -17,7 +17,7 @@
         </schemaBindings>
 
         <bindings node="//xs:element[@name='svg']/xs:complexType">
-            <annox:annotateClass>@javax.xml.bind.annotation.XmlRootElement(name="svg")</annox:annotateClass>
+            <annox:annotateClass>@jakarta.xml.bind.annotation.XmlRootElement(name="svg")</annox:annotateClass>
         </bindings>
 
         <bindings node="//xs:element[@name='SVG.Script.class']">

@@ -2,8 +2,8 @@ package com.github.rahulsom.svg
 
 import groovy.transform.CompileStatic
 
-import javax.xml.bind.JAXBContext
-import javax.xml.bind.Marshaller
+import jakarta.xml.bind.JAXBContext
+import jakarta.xml.bind.Marshaller
 
 @CompileStatic
 @NewifySvg
