@@ -1,12 +1,27 @@
-https://opensource.org/licenses/Apache-2.0[image:https://img.shields.io/badge/License-Apache%202.0-blue.svg[License]]
-https://maven-badges.herokuapp.com/maven-central/com.github.rahulsom/svg-builder[image:https://maven-badges.herokuapp.com/maven-central/com.github.rahulsom/svg-builder/badge.svg[MavenCentral]]
-
 = SVG Builder
+:package: com.github.rahulsom
+:package-path: com/github/rahulsom
+:package-path-encoded: com%2Fgithub%2Frahulsom
+:snapshot-prefix: image:https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fcentral.sonatype.com%2Frepository%2Fmaven-snapshots%2F{package-path-encoded}%2F
+:snapshot-middle: %2Fmaven-metadata.xml&style=for-the-badge&label=S[alt=Maven Snapshot,height=30,link="https://central.sonatype.com/repository/maven-snapshots/{package-path}/
+:snapshot-suffix: /maven-metadata.xml"]
+:central-prefix: image:https://img.shields.io/maven-central/v/{package}/
+:central-middle: ?style=for-the-badge&label=R&color=green[alt=Maven Central Version,height=30,link="https://central.sonatype.com/artifact/{package}/
+:central-suffix: /overview"]
+:deprecated-middle: ?style=for-the-badge&label=R&color=lightgrey[alt=Maven Central Version,height=30,link="https://central.sonatype.com/artifact/{package}/
+
+image:https://img.shields.io/github/commits-since/rahulsom/svg-builder/latest?style=for-the-badge[GitHub commits since latest release, link="https://github.com/rahulsom/nothing/releases/new"]
 
 JAXB Classes for SVG.
 
 == Usage
 
+=== Available versions
+
+{central-prefix}svg-builder{central-middle}svg-builder{central-suffix}
+{snapshot-prefix}svg-builder{snapshot-middle}svg-builder{snapshot-suffix}
+
+=== Examples
 In Java code, the fluent API can be used to build SVG
 
 [source,java]
