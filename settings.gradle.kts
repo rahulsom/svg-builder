@@ -1,5 +1,5 @@
 plugins {
-  id 'com.gradle.develocity' version '4.1.1'
+  id("com.gradle.develocity") version "4.1.1"
 }
 
 develocity {
@@ -9,5 +9,4 @@ develocity {
   }
 }
 
-rootProject.name = 'svg-builder'
-
+rootProject.name = "svg-builder"
