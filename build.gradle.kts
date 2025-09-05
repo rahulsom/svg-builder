@@ -7,7 +7,7 @@ plugins {
     id("java")
     id("groovy")
     id("org.jetbrains.kotlin.jvm") version "2.2.10"
-    id("com.github.rahulsom.waena.root") version "0.15.1"
+    id("com.github.rahulsom.waena.root") version "0.16.0"
     id("com.github.rahulsom.waena.published") version "0.15.1"
 }
 
