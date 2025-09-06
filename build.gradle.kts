@@ -8,7 +8,7 @@ plugins {
     id("groovy")
     id("org.jetbrains.kotlin.jvm") version "2.2.10"
     id("com.github.rahulsom.waena.root") version "0.16.0"
-    id("com.github.rahulsom.waena.published") version "0.16.0"
+    id("com.github.rahulsom.waena.published") version "0.17.0"
 }
 
 configure<nebula.plugin.contacts.ContactsExtension> {
