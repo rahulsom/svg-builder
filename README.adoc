@@ -10,7 +10,7 @@
 :central-suffix: /overview"]
 :deprecated-middle: ?style=for-the-badge&label=R&color=lightgrey[alt=Maven Central Version,height=30,link="https://central.sonatype.com/artifact/{package}/
 
-image:https://img.shields.io/github/commits-since/rahulsom/svg-builder/latest?style=for-the-badge[GitHub commits since latest release, link="https://github.com/rahulsom/nothing/releases/new"]
+image:https://img.shields.io/github/commits-since/rahulsom/svg-builder/latest?style=for-the-badge[GitHub commits since latest release, link="https://github.com/rahulsom/svg-builder/releases/new"]
 
 JAXB Classes for SVG.
 
