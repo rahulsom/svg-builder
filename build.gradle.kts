@@ -11,7 +11,7 @@ plugins {
     id("com.github.rahulsom.waena.published") version "0.17.0"
 }
 
-configure<nebula.plugin.contacts.ContactsExtension> {
+contacts {
   validateEmails = true
   addPerson("rahulsom@noreply.github.com", delegateClosureOf<nebula.plugin.contacts.Contact> {
     moniker("Rahul Somasunderam")
