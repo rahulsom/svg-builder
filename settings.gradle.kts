@@ -10,3 +10,5 @@ develocity {
 }
 
 rootProject.name = "svg-builder"
+
+includeBuild("gradle/build-logic")
