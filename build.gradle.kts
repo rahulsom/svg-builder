@@ -1,9 +1,8 @@
-import com.github.rahulsom.svgbuilder.Converter
-import com.github.rahulsom.svgbuilder.GroovyNewifyBuilder
 import com.github.rahulsom.waena.WaenaExtension
 import java.net.URI
 
 plugins {
+    id("com.github.rahulsom.svg-builder")
     id("java")
     id("groovy")
     id("org.jetbrains.kotlin.jvm") version "2.2.20"
@@ -64,7 +63,7 @@ tasks.register("download") {
                 URI("https://www.w3.org/Graphics/SVG/1.1/DTD/svg11-flat-20030114.dtd").toURL().readText()
             )
         }
-        Converter().convert(layout.buildDirectory.get().asFile)
+        svgBuilderPlugin.converter.convert(layout.buildDirectory.get().asFile)
     }
 }
 
@@ -99,7 +98,7 @@ tasks.register<JavaExec>("xjcGenerate") {
     }
 
     doLast {
-        GroovyNewifyBuilder().createFile(layout.buildDirectory.get().asFile)
+        svgBuilderPlugin.groovyNewifyBuilder.createFile(layout.buildDirectory.get().asFile)
     }
 }
 
