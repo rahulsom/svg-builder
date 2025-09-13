@@ -13,5 +13,10 @@ open class SvgBuilderExtension @Inject constructor(objects: ObjectFactory) {
 class SvgBuilderPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         project.extensions.create("svgBuilderPlugin", SvgBuilderExtension::class.java)
+
+        // Register custom task types for configuration cache compatibility
+        project.tasks.register("downloadSvgDtd", DownloadSvgDtdTask::class.java)
+        project.tasks.register("generateXjc", GenerateXjcTask::class.java)
+        project.tasks.register("copyKotlinTestClasses", CopyKotlinTestClassesTask::class.java)
     }
 }
