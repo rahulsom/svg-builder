@@ -1,5 +1,4 @@
 import com.github.rahulsom.waena.WaenaExtension
-import java.net.URI
 
 plugins {
     id("com.github.rahulsom.svg-builder")
@@ -55,72 +54,39 @@ dependencies {
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 }
 
-tasks.register("download") {
-    doFirst {
-        if (!file("build/schemas/svg.dtd").exists()) {
-            file("${layout.buildDirectory.get()}/schemas").mkdirs()
-            file("build/schemas/svg.dtd").writeText(
-                URI("https://www.w3.org/Graphics/SVG/1.1/DTD/svg11-flat-20030114.dtd").toURL().readText()
-            )
-        }
-        svgBuilderPlugin.converter.convert(layout.buildDirectory.get().asFile)
-    }
+tasks.downloadSvgDtd.configure {
+    schemasDir.set(layout.buildDirectory.dir("schemas"))
 }
 
-tasks.register<JavaExec>("xjcGenerate") {
-    description = "Generate Java classes from XML schema"
-    group = "build"
-
-    dependsOn("download")
-
-    classpath = xjcTool
-    mainClass.set("com.sun.tools.xjc.Driver")
-
-    val outputDir = file("build/generated/sources/xjc/java/main")
-    val schemaDir = file("build/schemas")
-    val bindingDir = file("src/main/jaxb")
-
-    inputs.dir(schemaDir).withPropertyName("schemaDir")
-    inputs.dir(bindingDir).withPropertyName("bindingDir").optional()
-    outputs.dir(outputDir)
-
-    args = listOf(
-        "-d", outputDir.absolutePath,
-        "-quiet",
-        "-extension",
-        "-Xfluent-api",
-        "-Xannotate"
-    ) + (if (bindingDir.exists()) listOf("-b", bindingDir.absolutePath) else emptyList()) +
-    listOf(schemaDir.absolutePath)
-
-    doFirst {
-        outputDir.mkdirs()
-    }
-
-    doLast {
-        svgBuilderPlugin.groovyNewifyBuilder.createFile(layout.buildDirectory.get().asFile)
-    }
+tasks.generateXjc.configure {
+    dependsOn(tasks.downloadSvgDtd)
+    schemaDir.set(layout.buildDirectory.dir("schemas"))
+    bindingDir.set(layout.projectDirectory.dir("src/main/jaxb"))
+    outputDir.set(layout.buildDirectory.dir("generated/sources/xjc/java/main"))
+    xjcClasspath.setFrom(xjcTool)
+    buildDir.set(layout.buildDirectory)
 }
 
 tasks.compileJava {
-    dependsOn("xjcGenerate")
+    dependsOn(tasks.generateXjc)
 }
 
 tasks.compileKotlin {
-    dependsOn("xjcGenerate")
+    dependsOn(tasks.generateXjc)
 }
 
 tasks.named("sourcesJar") {
-    dependsOn("xjcGenerate")
+    dependsOn(tasks.generateXjc)
+}
+
+tasks.copyKotlinTestClasses.configure {
+    dependsOn(tasks.compileTestKotlin)
+    kotlinTestClassesDir.set(layout.buildDirectory.dir("classes/kotlin/test"))
+    javaTestClassesDir.set(layout.buildDirectory.dir("classes/java/test"))
 }
 
 tasks.compileTestGroovy {
-    doFirst {
-        copy {
-            from("build/classes/kotlin/test")
-            into("build/classes/java/test")
-        }
-    }
+    dependsOn(tasks.copyKotlinTestClasses)
 }
 
 tasks.javadoc {
@@ -135,8 +101,4 @@ kotlin {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
-}
-
-configure<WaenaExtension> {
-    publishMode.set(WaenaExtension.PublishMode.Central)
 }
