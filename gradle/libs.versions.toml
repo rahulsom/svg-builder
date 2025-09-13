@@ -1,0 +1,59 @@
+[versions]
+kotlin = "2.2.20"
+waena = "0.18.0"
+jaxb-api = "4.0.2"
+jaxb-runtime = "4.0.5"
+jaxb-core = "4.0.5"
+jaxb-xjc = "4.0.5"
+jaxb-api-legacy = "2.3.1"
+jaxb2-fluent-api = "3.0"
+jaxb2-basics-annotate = "1.1.0"
+groovy = "3.0.25"
+spock = "2.3-groovy-4.0"
+trang = "20091111"
+develocity = "4.1.1"
+
+[libraries]
+# JAXB dependencies
+jaxb-xjc = { module = "org.glassfish.jaxb:jaxb-xjc", version.ref = "jaxb-xjc" }
+jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", version.ref = "jaxb-runtime" }
+jaxb-api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version.ref = "jaxb-api" }
+jaxb-api-legacy = { module = "javax.xml.bind:jaxb-api", version.ref = "jaxb-api-legacy" }
+jaxb-core = { module = "com.sun.xml.bind:jaxb-core", version.ref = "jaxb-core" }
+jaxb2-fluent-api = { module = "org.jvnet.jaxb2_commons:jaxb2-fluent-api", version.ref = "jaxb2-fluent-api" }
+jaxb2-basics-annotate = { module = "org.jvnet.jaxb2_commons:jaxb2-basics-annotate", version.ref = "jaxb2-basics-annotate" }
+
+# Groovy
+groovy-all = { module = "org.codehaus.groovy:groovy-all", version.ref = "groovy" }
+
+# Kotlin
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+
+# Testing
+spock-core = { module = "org.spockframework:spock-core", version.ref = "spock" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+
+# Build logic dependencies
+trang = { module = "com.thaiopensource:trang", version.ref = "trang" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+waena-root = { id = "com.github.rahulsom.waena.root", version.ref = "waena" }
+waena-published = { id = "com.github.rahulsom.waena.published", version.ref = "waena" }
+develocity = { id = "com.gradle.develocity", version.ref = "develocity" }
+svg-builder = { id = "com.github.rahulsom.svg-builder" }
+
+[bundles]
+xjc-tools = [
+    "jaxb-xjc",
+    "jaxb-runtime", 
+    "jaxb-api",
+    "jaxb-api-legacy",
+    "jaxb2-fluent-api",
+    "jaxb2-basics-annotate"
+]
+jaxb-runtime = [
+    "jaxb-api",
+    "jaxb-runtime",
+    "jaxb-core"
+]

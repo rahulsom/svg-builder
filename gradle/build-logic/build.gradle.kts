@@ -18,5 +18,5 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation("com.thaiopensource:trang:20091111")
+    implementation(libs.trang)
 }
