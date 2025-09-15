@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.2.20"
 waena = "0.18.0"
-jaxb-api = "4.0.2"
+jaxb-api = "4.0.4"
 jaxb-runtime = "4.0.5"
 jaxb-core = "4.0.5"
 jaxb-xjc = "4.0.5"
