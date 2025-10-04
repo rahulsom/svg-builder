@@ -24,7 +24,6 @@ class KotlinContext {
                         it.parameterTypes[0].name != "java.lang.Object"
 
             }
-            .sortedBy { it.name.length }
-            .firstOrNull()
+            .minByOrNull { it.name.length }
     }
 }
