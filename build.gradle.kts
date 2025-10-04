@@ -1,5 +1,3 @@
-import com.github.rahulsom.waena.WaenaExtension
-
 plugins {
     alias(libs.plugins.svg.builder)
     id("java")

@@ -3,7 +3,6 @@ package com.github.rahulsom.svgbuilder
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.tasks.*
-import java.io.File
 import java.net.URI
 import javax.inject.Inject
 
