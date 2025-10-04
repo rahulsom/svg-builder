@@ -2,10 +2,11 @@ package com.github.rahulsom.svg
 
 import groovy.transform.CompileStatic
 import groovy.transform.Memoized
-
+import groovy.transform.TypeChecked
 import jakarta.xml.bind.JAXBElement
 
 @CompileStatic
+@TypeChecked
 class GroovyContext {
     List<JAXBElement> things = new ArrayList<>();
 
