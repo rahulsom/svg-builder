@@ -2,10 +2,7 @@ package com.github.rahulsom.svgbuilder
 
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.DirectoryProperty
-import org.gradle.api.provider.Property
 import org.gradle.api.tasks.*
-import org.gradle.process.JavaExecSpec
-import java.io.File
 import javax.inject.Inject
 
 @CacheableTask
