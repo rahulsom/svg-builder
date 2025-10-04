@@ -11,7 +11,6 @@ jaxb2-basics-annotate = "1.1.0"
 groovy = "3.0.25"
 spock = "2.3-groovy-4.0"
 trang = "20091111"
-develocity = "4.2.1"
 
 [libraries]
 # JAXB dependencies
@@ -40,7 +39,6 @@ trang = { module = "com.thaiopensource:trang", version.ref = "trang" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 waena-root = { id = "com.github.rahulsom.waena.root", version.ref = "waena" }
 waena-published = { id = "com.github.rahulsom.waena.published", version.ref = "waena" }
-develocity = { id = "com.gradle.develocity", version.ref = "develocity" }
 svg-builder = { id = "com.github.rahulsom.svg-builder" }
 
 [bundles]
