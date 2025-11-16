@@ -11,7 +11,7 @@ jaxb2-basics-annotate = "1.1.0"
 groovy = "3.0.25"
 spock = "2.3-groovy-4.0"
 trang = "20091111"
-junit = "5.11.4"
+junit = "6.0.1"
 assertj = "3.27.6"
 
 [libraries]
