@@ -1,8 +1,11 @@
 package com.github.rahulsom.svg
 
-import spock.lang.Specification
+import org.junit.jupiter.api.Test
 
-class SvgSpec extends Specification {
+import static org.assertj.core.api.Assertions.assertThat
+import static org.assertj.core.api.Assertions.assertThatCode
+
+class SvgSpec {
     private static final String EXPECTED = '''\
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <svg width="7" height="3" xmlns="http://www.w3.org/2000/svg" xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -11,20 +14,23 @@ class SvgSpec extends Specification {
         </svg>
         '''.stripIndent()
 
-    void 'java builder works'() {
-        expect: JavaBuilder.createSvg() == EXPECTED
+    @Test
+    void javaBuilderWorks() {
+        assertThat(JavaBuilder.createSvg()).isEqualTo(EXPECTED)
     }
 
-    void 'kotlin builder works'() {
-        expect: KotlinBuilder.createSvg() == EXPECTED
+    @Test
+    void kotlinBuilderWorks() {
+        assertThat(KotlinBuilder.createSvg()).isEqualTo(EXPECTED)
     }
 
-    void 'groovy builder works'() {
-        expect: GroovyBuilder.createSvg() == EXPECTED
+    @Test
+    void groovyBuilderWorks() {
+        assertThat(GroovyBuilder.createSvg()).isEqualTo(EXPECTED)
     }
 
-    void 'groovy builder works with style'() {
-        when: GroovyBuilder.createWithStyle()
-        then: notThrown()
+    @Test
+    void groovyBuilderWorksWithStyle() {
+        assertThatCode(() -> GroovyBuilder.createWithStyle()).doesNotThrowAnyException()
     }
 }
