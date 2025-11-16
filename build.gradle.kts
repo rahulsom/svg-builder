@@ -39,7 +39,9 @@ dependencies {
 
     implementation(libs.bundles.jaxb.runtime)
 
-    testImplementation(libs.spock.core)
+    testImplementation(libs.groovy.all)
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.assertj.core)
     testRuntimeOnly(libs.junit.platform.launcher)
     testImplementation(libs.kotlin.stdlib.jdk8)
     compileOnly(libs.kotlin.stdlib.jdk8)
