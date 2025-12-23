@@ -23,3 +23,5 @@ jobs:
       actions: read
       contents: read
       packages: read
+    with:
+      codeql-actions: true
