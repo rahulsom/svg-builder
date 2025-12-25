@@ -3,6 +3,10 @@ package com.github.rahulsom.svg;
 import java.util.function.Consumer;
 
 public class GroovySvgExtension {
+    private GroovySvgExtension() {
+        // This should not be initialized
+    }
+
     public static <T extends SVGSvgContent> T content(T self, Consumer<GroovyContext> consumer) {
         GroovyContext context = new GroovyContext();
         consumer.accept(context);
