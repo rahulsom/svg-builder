@@ -11,7 +11,7 @@ jaxb2-fluent-api = "3.0"
 junit = "6.0.2"
 kotlin = "2.3.10"
 trang = "20091111"
-waena = "0.21.1"
+waena = "0.21.2"
 
 [libraries]
 # JAXB dependencies
