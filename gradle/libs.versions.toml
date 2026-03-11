@@ -12,7 +12,8 @@ junit = "6.0.3"
 kotlin = "2.3.10"
 trang = "20091111"
 waena = "0.24.0"
-xml-apis = { strictly = "2.0.2" }
+xml-apis = { strictly = "1.0.b2" }
+slf4j = "1.7.36"
 
 [libraries]
 # JAXB dependencies
@@ -26,6 +27,9 @@ jaxb2-basics-annotate = { module = "org.jvnet.jaxb2_commons:jaxb2-basics-annotat
 
 # XML
 xml-apis = { module = "xml-apis:xml-apis", version.ref = "xml-apis" }
+
+# SLF4J
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
 
 # Groovy
 groovy-all = { module = "org.codehaus.groovy:groovy-all", version.ref = "groovy" }
@@ -54,7 +58,8 @@ xjc-tools = [
     "jaxb-api",
     "jaxb-api-legacy",
     "jaxb2-fluent-api",
-    "jaxb2-basics-annotate"
+    "jaxb2-basics-annotate",
+    "slf4j-simple"
 ]
 jaxb-runtime = [
     "jaxb-api",
