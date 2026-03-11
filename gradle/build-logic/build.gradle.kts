@@ -19,4 +19,5 @@ gradlePlugin {
 
 dependencies {
     implementation(libs.trang)
+    implementation(libs.xml.apis)
 }
