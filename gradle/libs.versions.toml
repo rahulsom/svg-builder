@@ -13,7 +13,7 @@ kotlin = "2.4.10"
 trang = "20091111"
 waena = "0.29.0"
 xml-apis = { strictly = "2.0.2" }
-slf4j = "2.0.18"
+slf4j = "2.0.19"
 
 [libraries]
 # JAXB dependencies
